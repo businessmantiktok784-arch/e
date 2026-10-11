@@ -1,0 +1,8 @@
+{
+  "name": "Earth Talk",
+  "description": "Earth Talk is a WhatsApp-first GeoAI, GIS, and community geoscience platform that helps people document, explore, investigate, and learn from geological and geoscientific observations.",
+  "tagline": "Discover Earth. Together.",
+  "previousName": "Rock Talk",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

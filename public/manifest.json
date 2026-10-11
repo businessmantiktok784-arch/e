@@ -1,0 +1,57 @@
+{
+  "images": {
+    "rock": [
+      "rock-00.jpg",
+      "rock-01.jpg",
+      "rock-02.jpg",
+      "rock-03.jpg",
+      "rock-04.jpg",
+      "rock-05.jpg",
+      "rock-06.jpg",
+      "rock-07.jpg",
+      "rock-08.jpg",
+      "rock-09.jpg",
+      "rock-10.jpg",
+      "rock-11.jpg",
+      "rock-12.jpg",
+      "rock-13.jpg",
+      "rock-14.jpg"
+    ],
+    "structure": [
+      "structure-00.jpg",
+      "structure-01.jpg",
+      "structure-02.jpg",
+      "structure-03.jpg",
+      "structure-04.jpg",
+      "structure-05.jpg",
+      "structure-06.jpg",
+      "structure-07.jpg"
+    ],
+    "water": [
+      "water-00.jpg",
+      "water-01.jpg",
+      "water-02.jpg",
+      "water-03.jpg",
+      "water-04.jpg",
+      "water-05.jpg"
+    ],
+    "field": [
+      "field-00.jpg",
+      "field-01.jpg",
+      "field-02.jpg",
+      "field-03.jpg",
+      "field-04.jpg",
+      "field-05.jpg",
+      "field-06.jpg",
+      "field-07.jpg"
+    ],
+    "misc": [
+      "misc-00.jpg",
+      "misc-01.jpg"
+    ]
+  },
+  "videos": [
+    "clip-waterfall.webm",
+    "clip-river.webm"
+  ]
+}
