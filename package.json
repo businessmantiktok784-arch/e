@@ -1,0 +1,36 @@
+{
+  "name": "earth-talk",
+  "version": "1.0.0",
+  "description": "Earth Talk - Discover Earth. Together. WhatsApp-first GeoAI, GIS, community investigation and research platform for Rwanda",
+  "type": "module",
+  "main": "dist/server.js",
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "build": "vite build && tsc",
+    "start": "node dist/server.js",
+    "lint": "tsc --noEmit && tsc -p web/tsconfig.json --noEmit",
+    "test": "tsx tests/run.ts tests/stage2.test.ts && tsx tests/run.ts tests/stage3.test.ts && tsx tests/run.ts tests/stage4.test.ts && tsx tests/run.ts tests/stage5.test.ts && tsx tests/run.ts tests/stage6.test.ts && tsx tests/run.ts tests/stage7.test.ts && tsx tests/run.ts tests/stage8.test.ts && tsx tests/run.ts tests/stage9.test.ts && tsx tests/run.ts tests/stage10.test.ts && tsx tests/run.ts tests/stage11.test.ts && tsx tests/run.ts tests/fake-data-audit.test.ts && tsx tests/run.ts tests/stage12.test.ts && tsx tests/run.ts tests/stage13.test.ts && tsx tests/run.ts tests/security-regressions.test.ts && tsx tests/run.ts tests/webhook-durability.test.ts && tsx tests/run.ts tests/durable-queue-config.test.ts",
+    "test:integration": "tsx tests/integration/supabase-queue.test.ts"
+  },
+  "dependencies": {
+    "@google/genai": "^2.24.0",
+    "@supabase/supabase-js": "^2.117.2",
+    "dotenv": "^17.2.3",
+    "express": "^4.21.2",
+    "lucide-react": "^1.49.0",
+    "maplibre-gl": "^6.11.2",
+    "pdfjs-dist": "^4.10.38",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^22.14.0",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.1.1",
+    "tsx": "^4.21.0",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.1"
+  }
+}

@@ -1,0 +1,563 @@
+/**
+ * Earth Talk — Google design language theme.
+ *
+ * The tokens below are lifted from the Google Maps / Material 3 palettes that
+ * the product is specified against: the blue primary ramp, the neutral surface
+ * ramp, and the 8% / 12% / 16% state-layer opacities used for hover, press and
+ * focus. Every interactive primitive in the shell (`.g-*`) is built from these
+ * variables so the whole desktop UI reads as one Google-style surface.
+ */
+
+:root {
+  /* Primary ramp */
+  --g-primary: #0b57d0;
+  --g-primary-hover: #0842a0;
+  --g-primary-pressed: #062e6f;
+  --g-primary-container: #d3e3fd;
+  --g-primary-container-hover: #a8c7fa;
+  --g-on-primary: #ffffff;
+  --g-on-primary-container: #041e49;
+
+  /* Neutral surface ramp */
+  --g-surface: #ffffff;
+  --g-surface-container: #f8fafd;
+  --g-surface-container-low: #f0f4f9;
+  --g-surface-container-high: #eef1f6;
+  --g-surface-variant: #e3e3e3;
+  --g-on-surface: #1f1f1f;
+  --g-on-surface-variant: #5e5e5e;
+  --g-on-surface-faint: #8f8f8f;
+  --g-outline: #c7c7c7;
+  --g-outline-soft: #e3e3e3;
+
+  /* Semantic accents (kept sparse; the evidence ladder owns the data colours) */
+  --g-success: #2b7f3f;
+  --g-success-container: #c4eed0;
+  --g-warning: #9f6108;
+  --g-warning-container: #ffdf99;
+  --g-danger: #d32f28;
+  --g-danger-container: #ffdad8;
+
+  /* State layers — Google's 8 / 12 / 16 percent model */
+  --g-state-hover: 0.08;
+  --g-state-pressed: 0.12;
+  --g-state-focus: 0.12;
+  --g-state-hover-focus: 0.16;
+
+  /* Elevation */
+  --g-elev-1: 0 1px 2px rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
+  --g-elev-2: 0 1px 2px rgba(60, 64, 67, 0.3), 0 2px 6px 2px rgba(60, 64, 67, 0.15);
+  --g-elev-3: 0 4px 8px 3px rgba(60, 64, 67, 0.15), 0 1px 3px rgba(60, 64, 67, 0.3);
+
+  /* Metrics */
+  --g-radius-s: 4px;
+  --g-radius-m: 8px;
+  --g-radius-l: 12px;
+  --g-radius-xl: 16px;
+  --g-sidebar-w: 280px;
+  --g-sidebar-rail-w: 64px;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  font-family: Roboto, 'Google Sans', Arial, sans-serif;
+  background: var(--g-surface-container);
+  color: var(--g-on-surface);
+  -webkit-font-smoothing: antialiased;
+}
+
+.font-mono {
+  font-family: 'Roboto Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+/* Text field and select, Google-material outline style. */
+.g-input,
+.g-textarea {
+  width: 100%;
+  box-sizing: border-box;
+  background: var(--g-surface);
+  color: var(--g-on-surface);
+  border: 1px solid var(--g-outline);
+  border-radius: var(--g-radius-m);
+  font-family: inherit;
+  transition: border-color 120ms ease, box-shadow 120ms ease;
+}
+.g-input:focus-visible,
+.g-textarea:focus-visible {
+  outline: none;
+  border-color: var(--g-primary);
+  box-shadow: 0 0 0 2px var(--g-primary-container);
+}
+.g-input::placeholder,
+.g-textarea::placeholder {
+  color: var(--g-on-surface-faint);
+}
+
+/* Thin, unobtrusive scrollbars, as in Google's own surfaces. */
+.g-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: #bdc1c6 transparent;
+}
+.g-scroll::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+.g-scroll::-webkit-scrollbar-thumb {
+  background: #bdc1c6;
+  border-radius: 8px;
+}
+.g-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* ---------------------------------------------------------------- surfaces */
+
+.g-card {
+  background: var(--g-surface);
+  border: 1px solid var(--g-outline-soft);
+  border-radius: var(--g-radius-l);
+  box-shadow: var(--g-elev-1);
+}
+
+.g-section-label {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--g-on-surface-variant);
+}
+
+/* Collapsible section header. The label reads as a quiet group title and the
+   chevron is the only affordance; the whole row is the hit target so it
+   clears the 44px touch-target floor. */
+.g-group-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  height: 44px;
+  padding: 0 16px 0 24px;
+  border: 0;
+  background: transparent;
+  border-radius: var(--g-radius-m);
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--g-on-surface-variant);
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 120ms ease;
+}
+.g-group-toggle:hover {
+  background: rgba(32, 33, 36, var(--g-state-hover));
+}
+.g-group-toggle:focus-visible {
+  outline: 2px solid var(--g-primary);
+  outline-offset: -2px;
+}
+.g-group-toggle .g-group-chevron {
+  transition: transform 180ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.g-group-toggle[aria-expanded='false'] .g-group-chevron {
+  transform: rotate(-90deg);
+}
+
+/* The section body. Animating the grid row keeps the collapsed height at
+   exactly zero without measuring anything in JavaScript. */
+.g-group-body {
+  display: grid;
+  grid-template-rows: 1fr;
+  transition: grid-template-rows 200ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.g-group-body[data-open='false'] {
+  grid-template-rows: 0fr;
+}
+.g-group-body > div {
+  overflow: hidden;
+  min-height: 0;
+}
+
+/* ------------------------------------------------------------------ inputs */
+
+.g-search {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 44px;
+  padding: 0 12px;
+  background: var(--g-surface);
+  border: 1px solid var(--g-outline);
+  border-radius: 14px;
+  box-shadow: var(--g-elev-1);
+  transition: box-shadow 120ms ease, border-color 120ms ease;
+}
+.g-search:focus-within {
+  border-color: transparent;
+  box-shadow: var(--g-elev-2);
+  outline: 2px solid var(--g-primary);
+  outline-offset: -1px;
+}
+.g-search input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  font-size: 14px;
+  color: var(--g-on-surface);
+}
+.g-search input::placeholder {
+  color: var(--g-on-surface-faint);
+}
+
+.g-select {
+  width: 100%;
+  height: 40px;
+  padding: 0 32px 0 12px;
+  font-size: 13px;
+  font-family: inherit;
+  color: var(--g-on-surface);
+  background-color: var(--g-surface);
+  border: 1px solid var(--g-outline);
+  border-radius: var(--g-radius-m);
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%235e5e5e' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  cursor: pointer;
+}
+.g-select:hover {
+  background-color: rgba(11, 87, 208, var(--g-state-hover));
+}
+.g-select:focus {
+  outline: 0;
+  border-color: var(--g-primary);
+  box-shadow: inset 0 0 0 1px var(--g-primary);
+}
+
+/* ----------------------------------------------------------------- buttons */
+
+.g-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 40px;
+  padding: 0 20px;
+  border-radius: 20px;
+  border: 0;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color 120ms ease, box-shadow 120ms ease;
+}
+.g-btn:focus-visible {
+  outline: 2px solid var(--g-on-surface);
+  outline-offset: 2px;
+}
+
+.g-btn-filled {
+  background: var(--g-primary);
+  color: var(--g-on-primary);
+  box-shadow: var(--g-elev-1);
+}
+.g-btn-filled:hover {
+  background: var(--g-primary-hover);
+  box-shadow: var(--g-elev-2);
+}
+.g-btn-filled:active {
+  background: var(--g-primary-pressed);
+}
+
+.g-btn-tonal {
+  background: var(--g-primary-container);
+  color: var(--g-on-primary-container);
+}
+.g-btn-tonal:hover {
+  background: var(--g-primary-container-hover);
+  box-shadow: var(--g-elev-1);
+}
+
+.g-btn-outlined {
+  background: transparent;
+  color: var(--g-primary);
+  border: 1px solid var(--g-outline);
+}
+.g-btn-outlined:hover {
+  background: rgba(11, 87, 208, var(--g-state-hover));
+  border-color: var(--g-primary);
+}
+
+.g-btn-text {
+  background: transparent;
+  color: var(--g-primary);
+}
+.g-btn-text:hover {
+  background: rgba(11, 87, 208, var(--g-state-hover));
+}
+.g-btn-text:active {
+  background: rgba(11, 87, 208, var(--g-state-pressed));
+}
+
+.g-icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--g-on-surface-variant);
+  cursor: pointer;
+  transition: background-color 120ms ease;
+}
+.g-icon-btn:hover {
+  background: rgba(32, 33, 36, var(--g-state-hover));
+}
+.g-icon-btn:active {
+  background: rgba(32, 33, 36, var(--g-state-pressed));
+}
+.g-icon-btn:focus-visible {
+  outline: 2px solid var(--g-primary);
+  outline-offset: -2px;
+}
+
+/* ------------------------------------------------------ navigation (sidebar) */
+
+.g-sidebar {
+  display: flex;
+  flex-direction: column;
+  width: var(--g-sidebar-w);
+  min-width: var(--g-sidebar-w);
+  height: 100vh;
+  height: 100dvh;
+  background: var(--g-surface);
+  border-right: 1px solid var(--g-outline-soft);
+  overflow: hidden;
+}
+
+.g-nav-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  height: 48px;
+  padding: 0 16px 0 24px;
+  border: 0;
+  background: transparent;
+  border-radius: 0 24px 24px 0;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  color: #3c4043;
+  cursor: pointer;
+  text-align: left;
+  transition: background-color 120ms ease, color 120ms ease;
+}
+
+/* Icon-only rail. The column is never removed: it narrows to its icons, so the
+   map keeps its room while every destination stays one click away. */
+.g-sidebar--rail {
+  width: var(--g-sidebar-rail-w);
+  min-width: var(--g-sidebar-rail-w);
+}
+
+.g-sidebar--rail .g-nav-item {
+  justify-content: center;
+  gap: 0;
+  padding: 0;
+  border-radius: 0 20px 20px 0;
+}
+
+.g-sidebar--rail .g-nav-item > span.g-nav-label,
+.g-sidebar--rail .g-nav-badge {
+  display: none;
+}
+
+.g-nav-item--rail {
+  justify-content: center;
+  gap: 0;
+  padding: 0;
+  border-radius: 0 20px 20px 0;
+}
+
+.g-rail-monogram {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #eef1f6;
+  border: 1px solid var(--g-outline-soft);
+  font-family: 'Roboto Mono', ui-monospace, monospace;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--g-on-surface-variant);
+}
+
+.g-nav-item[aria-current='page'] .g-rail-monogram {
+  background: var(--g-primary-container);
+  border-color: var(--g-primary);
+  color: var(--g-on-primary-container);
+}
+.g-nav-item:hover {
+  background: rgba(32, 33, 36, var(--g-state-hover));
+  color: var(--g-on-surface);
+}
+.g-nav-item:focus-visible {
+  background: rgba(32, 33, 36, var(--g-state-focus));
+  outline: 0;
+}
+.g-nav-item[aria-current='page'] {
+  background: #e8f0fe;
+  color: var(--g-primary);
+}
+.g-nav-item[data-locked='true'] {
+  color: var(--g-on-surface-faint);
+}
+
+/* --------------------------------------------------- map-menu rows & switch */
+
+/* A row in the map-drawer menu: full-width, icon + label, flat until it is the
+   active destination. This is the menu-item look the map products use, kept
+   separate from `.g-nav-item` so the two can evolve independently. */
+.et-menu-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  min-height: 48px;
+  padding: 0 24px;
+  border: 0;
+  background: transparent;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--g-on-surface);
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 120ms ease, color 120ms ease;
+}
+.et-menu-item .et-menu-label {
+  min-width: 0;
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.et-menu-item:hover {
+  background: rgba(32, 33, 36, var(--g-state-hover));
+}
+.et-menu-item:focus-visible {
+  outline: 2px solid var(--g-primary);
+  outline-offset: -2px;
+}
+.et-menu-item[aria-current='page'] {
+  background: #e8f0fe;
+  color: var(--g-primary);
+  font-weight: 500;
+}
+.et-menu-item[data-locked='true'] {
+  color: var(--g-on-surface-faint);
+}
+
+/* Icon-only rail variant of the same row. */
+.et-menu-item--rail {
+  justify-content: center;
+  gap: 0;
+  padding: 0;
+}
+.et-menu-item--rail .et-menu-label,
+.et-menu-item--rail .g-nav-badge {
+  display: none;
+}
+
+/* --------------------------------------------------------- list rows, chips */
+
+.g-panel {
+  margin-top: 8px;
+  padding: 16px 16px 8px;
+  border-top: 1px solid var(--g-outline-soft);
+}
+
+/* Section heading whose icon and label share one row. Tailwind's preflight sets
+   `svg { display: block }`, so without an explicit row layout the icon stacks
+   above the text; this keeps the icon beside the title it describes. */
+.g-panel-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0 0 10px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #1f1f1f;
+}
+
+.g-list-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  width: 100%;
+  padding: 12px 16px;
+  border: 0;
+  border-bottom: 1px solid var(--g-outline-soft);
+  background: transparent;
+  font-family: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 120ms ease;
+}
+.g-list-row:hover {
+  background: rgba(32, 33, 36, var(--g-state-hover));
+}
+.g-list-row[aria-selected='true'] {
+  background: var(--g-primary-container);
+}
+
+.g-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 24px;
+  padding: 0 10px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  background: var(--g-surface-container-high);
+  color: var(--g-on-surface-variant);
+  white-space: nowrap;
+}
+
+.g-divider {
+  height: 1px;
+  background: var(--g-outline-soft);
+  border: 0;
+}
+
+/* Utility: visually hidden but reachable by assistive tech. */
+.g-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
